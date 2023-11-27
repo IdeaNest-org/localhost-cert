@@ -3,6 +3,7 @@ const fs = require('fs');
 
 function getGitHubToken() {
     const token = process.env.GH_TOKEN;
+    console.log('token', token);
     if (!token) {
         throw new Error('Please set the GH_TOKEN environment variable.');
     }

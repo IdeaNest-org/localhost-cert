@@ -12,22 +12,15 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [16.x]
-                # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        env:
+            GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
         steps:
             - uses: actions/checkout@v3
-            - name: Use Node.js ${{ matrix.node-version }}
+            - name: Use Node.js 16.x
               uses: actions/setup-node@v3
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'npm'
-            - name: Set environment variable
-              env:
-                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-              run: echo "GH_TOKEN=${GH_TOKEN}"
             - run: npm install
             - run: node index.js

@@ -51,7 +51,7 @@ module.exports = async function saveAndDelete() {
     console.log(localhostKey);
 
     // 使用示例
-    uploadFileToGitHubRepo(
+    await uploadFileToGitHubRepo(
         'IdeaNest-org',
         'localhost-cert',
         'root.crt',
@@ -59,7 +59,7 @@ module.exports = async function saveAndDelete() {
         fs.readFileSync('root.crt', 'utf-8')
     );
 
-    uploadFileToGitHubRepo(
+    await uploadFileToGitHubRepo(
         'IdeaNest-org',
         'localhost-cert',
         'localhost.pem',
@@ -67,7 +67,7 @@ module.exports = async function saveAndDelete() {
         fs.readFileSync('localhost.pem', 'utf-8')
     );
 
-    uploadFileToGitHubRepo(
+    await uploadFileToGitHubRepo(
         'IdeaNest-org',
         'localhost-cert',
         'localhost.key',

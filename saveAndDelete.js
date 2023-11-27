@@ -62,9 +62,9 @@ module.exports = async function saveAndDelete() {
     uploadFileToGitHubRepo(
         'IdeaNest-org',
         'localhost-cert',
-        'localhost.crt',
+        'localhost.pem',
         'main',
-        fs.readFileSync('localhost.crt', 'utf-8')
+        fs.readFileSync('localhost.pem', 'utf-8')
     );
 
     uploadFileToGitHubRepo(

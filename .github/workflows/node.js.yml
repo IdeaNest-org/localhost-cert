@@ -17,21 +17,19 @@ jobs:
 
         steps:
             - uses: actions/checkout@v3
-
+            - name: Use Node.js 16.x
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'npm'
+            - run: npm install
             - name: Check commit message
               run: |
                   if [[ "${{ github.event.head_commit.message }}" == *"generate root pem"* ]]; then
                     echo "Commit message contains the keyword."
                     # Perform additional actions or steps here
+                    node index.js
                   else
                     echo "Commit message does not contain the keyword."
-                    - name: Use Node.js 16.x
-                      uses: actions/setup-node@v3
-                      with:
-                          node-version: ${{ matrix.node-version }}
-                          cache: 'npm'
-                    - run: npm install
-                    - run: node index.js
+                    # Perform other actions or steps here
                   fi
-
-            

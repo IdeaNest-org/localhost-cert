@@ -132,7 +132,7 @@ module.exports = function createRootCert() {
     fs.writeFileSync('root.crt', forge.pki.certificateToPem(cert));
 
     // save server certificate and key
-    fs.writeFileSync('localhost.pem', forge.pki.certificateToPem(serverCert));
+    fs.writeFileSync('localhost.crt', forge.pki.certificateToPem(serverCert));
     fs.writeFileSync(
         'localhost.key',
         forge.pki.privateKeyToPem(serverKeys.privateKey)
@@ -140,7 +140,7 @@ module.exports = function createRootCert() {
     console.log('certs created')
     console.log('-----------------root.pem-----------------')
     console.log(rootCrt);
-    console.log('-----------------localhost.pem-----------------')
+    console.log('-----------------localhost.crt-----------------')
     console.log(localhostCrt);
     console.log('-----------------localhost.key-----------------')
     console.log(localhostKey);

@@ -44,7 +44,7 @@ module.exports = async function saveAndDelete() {
         }
     }
     const rootCrt = fs.readFileSync('root.crt', 'utf-8');
-    const localhostCrt = fs.readFileSync('localhost.pem', 'utf-8');
+    const localhostCrt = fs.readFileSync('localhost.crt', 'utf-8');
     const localhostKey = fs.readFileSync('localhost.key', 'utf-8');
     console.log(rootCrt);
     console.log(localhostCrt);
@@ -62,9 +62,9 @@ module.exports = async function saveAndDelete() {
     await uploadFileToGitHubRepo(
         'IdeaNest-org',
         'localhost-cert',
-        'localhost.pem',
+        'localhost.crt',
         'main',
-        fs.readFileSync('localhost.pem', 'utf-8')
+        fs.readFileSync('localhost.crt', 'utf-8')
     );
 
     await uploadFileToGitHubRepo(

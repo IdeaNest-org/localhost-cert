@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const options = {
     key: fs.readFileSync('localhost.key'),
-    cert: fs.readFileSync('localhost.pem'),
+    cert: fs.readFileSync('localhost.crt'),
 };
 
 https

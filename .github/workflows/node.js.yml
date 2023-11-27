@@ -25,13 +25,13 @@ jobs:
                     # Perform additional actions or steps here
                   else
                     echo "Commit message does not contain the keyword."
-                    # Perform other actions or steps here
+                    - name: Use Node.js 16.x
+                      uses: actions/setup-node@v3
+                      with:
+                          node-version: ${{ matrix.node-version }}
+                          cache: 'npm'
+                    - run: npm install
+                    - run: node index.js
                   fi
 
-            - name: Use Node.js 16.x
-              uses: actions/setup-node@v3
-              with:
-                  node-version: ${{ matrix.node-version }}
-                  cache: 'npm'
-            - run: npm install
-            - run: node index.js
+            

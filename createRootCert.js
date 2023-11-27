@@ -11,7 +11,7 @@ module.exports = function createRootCert() {
     cert.validity.notBefore = new Date();
     cert.validity.notAfter = new Date();
     cert.validity.notAfter.setFullYear(
-        cert.validity.notBefore.getFullYear() + 1
+        cert.validity.notBefore.getFullYear() + 20
     );
 
     const attrs = [
@@ -69,7 +69,7 @@ module.exports = function createRootCert() {
     serverCert.validity.notBefore = new Date();
     serverCert.validity.notAfter = new Date();
     serverCert.validity.notAfter.setFullYear(
-        serverCert.validity.notBefore.getFullYear() + 1
+        serverCert.validity.notBefore.getFullYear() + 20
     );
 
     const serverAttrs = [

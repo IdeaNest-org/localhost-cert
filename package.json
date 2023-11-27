@@ -1,6 +1,6 @@
 {
   "name": "localhost-cert",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,6 +16,13 @@
   },
   "homepage": "https://github.com/IdeaNest-org/localhost-cert#readme",
   "description": "",
+  "npmIgnore": [
+    "test.js",
+    ".github/",
+    "createRootCert.js",
+    "createServerCert.js",
+    "saveAndDelete.js"
+  ],
   "dependencies": {
     "@octokit/rest": "^20.0.1",
     "fs-extra": "^11.1.1",

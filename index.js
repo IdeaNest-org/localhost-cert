@@ -83,7 +83,7 @@ function readFileFromDirAsync(file) {
 
 // 调用检测函数
 
-module.exports = getHttps = ({ autoInstall = false }) => {
+module.exports = getHttps = ({ autoInstall = false } = {}) => {
     if (autoInstall) {
         checkRootCertificateInstallation().then((res) => {
             if (!res) {

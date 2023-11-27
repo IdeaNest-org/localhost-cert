@@ -1,50 +1,63 @@
-# Localhost Cert
 
-## A convenient, secure, and developer-friendly method to enable HTTPS support for localhost during development.
+# Localhost Cert 
 
-### What is My Certificate Helper?
+## A secure and convenient solution for enabling HTTPS on localhost
 
-My Certificate Helper is an NPM package that provides a simple and convenient way to enable HTTPS support for your local development server. It includes a set of tools and utilities to generate a self-signed SSL/TLS certificate specifically for localhost, and to configure your development server to use this certificate.
+## Other languages
+[chinese](readme.zh_CN.md)
 
-### How does it work?
+### When to use Localhost Cert?
 
-My Certificate Helper works by providing a set of functions that you can use in your Node.js application to generate and install a self-signed SSL/TLS certificate for your local development server. It also includes a command-line interface that you can use to perform the same tasks from the terminal.
+If you need to enable HTTPS when starting a local development server, then Localhost Cert is the tool you need. It allows you to quickly obtain pre-generated certificates.
 
-### What are the key features?
+### Is it necessary to install the root certificate?
 
-- Generates a self-signed SSL/TLS certificate specifically for localhost
-- Configures your development server to use the generated certificate
-- Provides a command-line interface for easy installation and configuration
-- Works with most popular development servers, including Node.js, Apache, and Nginx
-- Secure and developer-friendly
+Similar to most proxy tools, you still need to install the root certificate. This is because Localhost Cert uses a self-signed certificate, which is not trusted by default in browsers. Although installing the root certificate locally is safe.
 
-### How do I use it?
+### Why is it secure?
 
-To use My Certificate Helper in your Node.js application, simply install it using NPM:
+If you have a basic understanding of HTTPS, you know that installing a CA root certificate locally can be risky. This is because the root certificate can be used to sign any domain, such as google.com, enabling man-in-the-middle attacks. However, Localhost Cert immediately discards the private key of the root certificate after generating the localhost domain certificate. Therefore, it is impossible for anyone to use this root certificate to sign other websites.
+
+To ensure that the private key is not remembered, Localhost Cert utilizes GitHub Actions to generate the root certificate. The process of generating the certificate and the code at that time are fully traceable on GitHub. If you're interested, you can view the [GitHub Action](https://github.com/IdeaNest-org/localhost-cert/actions/runs/7004987626/job/19053845251) for more details.
+
+In summary, it is completely secure due to two reasons:
+1. The process of generating the root certificate is based on GitHub Actions and is fully traceable.
+2. After signing the localhost domain, the private key of the root certificate is discarded and cannot be used to sign other domains.
+
+### How to use?
 
 ```bash
-npm install my-certificate-helper --save-dev
+npm install localhost-cert --save-dev
 ```
 
-Then, require the package in your code and use the provided functions to generate and install the SSL/TLS certificate:
+#### webpack-dev-server
 
 ```javascript
-const myCertificateHelper = require('my-certificate-helper');
+const getHttps = require('localhost-cert');
 
-// Generate and install the SSL/TLS certificate
-myCertificateHelper.installCert();
+// webpack config
+module.exports = {
+    devServer: {
+        https: getHttps({
+            // If the developer has not installed the root certificate, they will be guided to install it.
+            autoInstall: true,
+        }),
+    },
+};
 ```
 
-Alternatively, you can use the command-line interface to perform the same tasks:
-
-```bash
-my-certificate-helper install
+```javascript
+// vite config
+const getHttps = require('localhost-cert');
+export default defineConfig({
+    server: {
+        https: getHttps({
+            // If the developer has not installed the root certificate, they will be guided to install it.
+            autoInstall: true,
+        }),
+    },
+});
 ```
-
-### Is it secure?
-
-Yes, My Certificate Helper uses industry-standard SSL/TLS encryption to secure your local development server. However, please note that self-signed certificates are not suitable for production environments as they are not issued by a trusted authority. In production, you should obtain a valid SSL/TLS certificate from a trusted certificate authority.
-
 ### License
 
-My Certificate Helper is licensed under the MIT License.
+Localhost Cert is licensed under the MIT License.

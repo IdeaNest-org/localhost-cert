@@ -1,7 +1,7 @@
 # Localhost Cert
 
 ## 一个安全、便捷的 localhost 支持 HTTPS 的方案
-
+[English](readme.md)
 ### 什么时候使用 Localhost Cert？
 
 如果你在启动本地开发服务器时需要开启 https，那么 Localhost Cert 就是你需要的工具。它可以快速获取已经生成的证书。
@@ -52,15 +52,6 @@ export default defineConfig({
         }),
     },
 });
-```
-```javascript create-react-app
-
-// package.json
-{
-    "scripts": {
-        "start": "cra-https --auto-install && react-scripts start"
-    }
-}
 ```
 
 ### License

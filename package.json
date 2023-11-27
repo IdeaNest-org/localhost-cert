@@ -1,0 +1,23 @@
+{
+  "name": "localhost-cert",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IdeaNest-org/localhost-cert.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IdeaNest-org/localhost-cert/issues"
+  },
+  "homepage": "https://github.com/IdeaNest-org/localhost-cert#readme",
+  "description": "",
+  "dependencies": {
+    "@octokit/rest": "^20.0.2",
+    "node-forge": "^1.3.1"
+  }
+}

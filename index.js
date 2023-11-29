@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const tls = require('tls');
 const https = require('https');
+var sudo = require('sudo-prompt');
 function install() {
     // windows 运行 certutil -addstore -enterprise -f "Root" "C:\path\to\your\certificate.crt"
     // mac 运行 sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain /path/to/your/certificate.crt
@@ -14,9 +15,18 @@ function install() {
         console.log('install root certificate');
         const crtPath = path.resolve(__dirname, 'root.crt');
         if (process.platform === 'win32') {
-            cp.exec(
-                'certutil -addstore -enterprise -f "Root" "' + crtPath + '"'
-            );
+            console.log('windows');
+            const cmd =
+                'certutil -addstore -enterprise -f "Root" "' + crtPath + '"';
+            var options = {
+                name: 'Localhost Cert',
+            };
+            sudo.exec(cmd, options, function (error, stdout, stderr) {
+                if (error) throw error;
+            });
+            // cp.exec(
+            //     'certutil -addstore -enterprise -f "Root" "' + crtPath + '"'
+            // );
         } else if (process.platform === 'darwin') {
             cp.exec(
                 'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain "' +
@@ -33,7 +43,10 @@ function install() {
             console.log('unsupport platform:' + process.platform);
         }
     } catch (error) {
-        console.log(error);
+        console.warn('install root certificate error:' + error);
+        console.warn(
+            'please download at:https://github.com/IdeaNest-org/localhost-cert/blob/main/root.crt and install root certificate manually'
+        );
     }
 }
 
@@ -70,8 +83,7 @@ async function startTestServer() {
             res.writeHead(200);
             res.end('Hello World!');
         })
-        .listen(8843);
-    console.log('server start at 8843');
+        .listen(8844);
 }
 
 function readFileFromDir(file) {

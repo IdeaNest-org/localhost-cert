@@ -38,9 +38,11 @@
         "saveAndDelete.js"
     ],
     "dependencies": {
-        "@octokit/rest": "^20.0.1",
-        "cross-env": "^7.0.3",
         "fs-extra": "^11.1.1",
+        "sudo-prompt": "^9.2.1"
+    },
+    "devDependencies": {
+        "@octokit/rest": "^20.0.1",
         "node-forge": "^1.3.1"
     }
 }

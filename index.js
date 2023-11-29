@@ -6,6 +6,8 @@ const fs = require('fs-extra');
 const tls = require('tls');
 const https = require('https');
 var sudo = require('sudo-prompt');
+let testServer = null;
+const testPort = 11790 + Math.floor(Math.random() * 100);
 function install() {
     // windows 运行 certutil -addstore -enterprise -f "Root" "C:\path\to\your\certificate.crt"
     // mac 运行 sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain /path/to/your/certificate.crt
@@ -61,29 +63,46 @@ async function checkRootCertificateInstallation() {
         checkServerIdentity: () => null, // 禁用服务器身份验证
     };
     // https 启动localhost 服务
-    startTestServer();
-    return await new Promise((resolve, reject) => {
-        const socket = tls.connect(8844, 'localhost', options, () => {
-            console.log('Root certificate is installed.');
-            socket.end();
-            resolve(true);
-        });
+    const server = startTestServer();
+    if (!server) {
+        return false;
+    }
+    try {
+        return await new Promise((resolve, reject) => {
+            const socket = tls.connect(testPort, 'localhost', options, () => {
+                // server && server.close();
+                socket.end();
+                resolve(true);
+            });
 
-        socket.on('error', (error) => {
-            resolve(false);
-            socket.end();
+            socket.on('error', (error) => {
+                // server && server.close();
+                resolve(false);
+                socket.end();
+            });
         });
-    });
+    } catch (error) {
+        return false;
+    }
 }
 
 async function startTestServer() {
-    const options = getHttps(true);
-    https
-        .createServer(options, (req, res) => {
+    if (testServer) {
+        return testServer;
+    }
+    const options = getHttps({
+        autoInstall: false,
+    });
+    try {
+        testServer = https.createServer(options, (req, res) => {
             res.writeHead(200);
             res.end('Hello World!');
-        })
-        .listen(8844);
+        });
+        testServer.listen(testPort);
+        return testServer;
+    } catch (error) {
+        return null;
+    }
 }
 
 function readFileFromDir(file) {

@@ -50,21 +50,20 @@ module.exports = async function checkRootCertificateInstallation() {
 };
 
 function replaceEnter(str) {
-    return str.replace(/\n/g, '').replace(/\r/g, '').replace(/\t/g, '');
+    try {
+        return str.replace(/\n/g, '').replace(/\r/g, '').replace(/\t/g, '');
+    } catch (error) {
+        return str;
+    }
 }
 
 async function checkMacCert() {
     const macCa = require('mac-ca');
-    const rootCrt = getRootCrt();
+    const rootCrt = await getRootCrt();
     const ca = await macCa.get();
-    if (
-        ca.find((item) => {
-            return replaceEnter(item) === replaceEnter(rootCrt);
-        })
-    ) {
-        return true;
-    }
-    return false;
+    return ca.some((item) => {
+        return item && replaceEnter(item) === replaceEnter(rootCrt);
+    });
 }
 
 async function checkWinCert() {

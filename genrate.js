@@ -19,7 +19,7 @@ if (
     !isFileExist(path.resolve(__dirname, 'certs/localhost.crt'))
 ) {
     createRootCert();
-    // saveAndDelete();
+    uploadToGithub();
 } else {
     console.log('certs already exist');
 }

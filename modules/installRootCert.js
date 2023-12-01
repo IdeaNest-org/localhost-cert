@@ -36,7 +36,7 @@ module.exports = function install() {
     } catch (error) {
         console.warn('install root certificate error:' + error);
         console.warn(
-            'please download at:https://github.com/IdeaNest-org/localhost-cert/blob/main/root.crt and install root certificate manually'
+            'please download at:https://github.com/IdeaNest-org/localhost-cert/blob/main/certs/root.crt and install root certificate manually'
         );
     }
 };

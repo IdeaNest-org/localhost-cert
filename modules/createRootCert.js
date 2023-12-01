@@ -1,9 +1,7 @@
 const forge = require('node-forge');
-const fs = require('fs');
-const path = require('path');
+const { writeCert } = require('./utils');
 
 module.exports = function createRootCert() {
-    // generate a root CA keypair
     const keys = forge.pki.rsa.generateKeyPair(2048);
     const cert = forge.pki.createCertificate();
     cert.publicKey = keys.publicKey;
@@ -128,20 +126,20 @@ module.exports = function createRootCert() {
     const localhostCrt = forge.pki.certificateToPem(serverCert);
     const localhostKey = forge.pki.privateKeyToPem(serverKeys.privateKey);
 
-    fs.writeFileSync('root.pem', forge.pki.certificateToPem(cert));
-    fs.writeFileSync('root.crt', forge.pki.certificateToPem(cert));
+    writeCert('root.pem', forge.pki.certificateToPem(cert));
+    writeCert('root.crt', forge.pki.certificateToPem(cert));
 
     // save server certificate and key
-    fs.writeFileSync('localhost.crt', forge.pki.certificateToPem(serverCert));
-    fs.writeFileSync(
+    writeCert('localhost.crt', forge.pki.certificateToPem(serverCert));
+    writeCert(
         'localhost.key',
         forge.pki.privateKeyToPem(serverKeys.privateKey)
     );
-    console.log('certs created')
-    console.log('-----------------root.pem-----------------')
+    console.log('certs created');
+    console.log('-----------------root.pem-----------------');
     console.log(rootCrt);
-    console.log('-----------------localhost.crt-----------------')
+    console.log('-----------------localhost.crt-----------------');
     console.log(localhostCrt);
-    console.log('-----------------localhost.key-----------------')
+    console.log('-----------------localhost.key-----------------');
     console.log(localhostKey);
 };

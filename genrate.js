@@ -14,9 +14,9 @@ function isFileExist(filePath) {
 }
 
 if (
-    !isFileExist(path.resolve(__dirname, 'root.pem')) ||
-    !isFileExist(path.resolve(__dirname, 'localhost.key')) ||
-    !isFileExist(path.resolve(__dirname, 'localhost.crt'))
+    !isFileExist(path.resolve(__dirname, 'certs/root.pem')) ||
+    !isFileExist(path.resolve(__dirname, 'certs/localhost.key')) ||
+    !isFileExist(path.resolve(__dirname, 'certs/localhost.crt'))
 ) {
     createRootCert();
     saveAndDelete();

@@ -1,9 +1,9 @@
 const { Octokit } = require('@octokit/rest');
 const fs = require('fs');
+const { readCert } = require('./utils');
 
 function getGitHubToken() {
     const token = process.env.GH_TOKEN;
-    console.log('token', token);
     if (!token) {
         throw new Error('Please set the GH_TOKEN environment variable.');
     }
@@ -14,7 +14,7 @@ const octokit = new Octokit({
     auth: getGitHubToken(), // 请替换为你的个人访问令牌
 });
 
-module.exports = async function saveAndDelete() {
+module.exports = async function uploadToGithub() {
     // 保存证书到本地
     async function uploadFileToGitHubRepo(
         owner,
@@ -43,9 +43,9 @@ module.exports = async function saveAndDelete() {
             console.error('Error uploading file to GitHub:', error.message);
         }
     }
-    const rootCrt = fs.readFileSync('root.crt', 'utf-8');
-    const localhostCrt = fs.readFileSync('localhost.crt', 'utf-8');
-    const localhostKey = fs.readFileSync('localhost.key', 'utf-8');
+    const rootCrt = readCert('root.crt');
+    const localhostCrt = readCert('localhost.crt');
+    const localhostKey = readCert('localhost.key');
     console.log(rootCrt);
     console.log(localhostCrt);
     console.log(localhostKey);
@@ -54,24 +54,24 @@ module.exports = async function saveAndDelete() {
     await uploadFileToGitHubRepo(
         'IdeaNest-org',
         'localhost-cert',
-        'root.crt',
+        'certs/root.crt',
         'main',
-        fs.readFileSync('root.crt', 'utf-8')
+        rootCrt
     );
 
     await uploadFileToGitHubRepo(
         'IdeaNest-org',
         'localhost-cert',
-        'localhost.crt',
+        'certs/localhost.crt',
         'main',
-        fs.readFileSync('localhost.crt', 'utf-8')
+        localhostCrt
     );
 
     await uploadFileToGitHubRepo(
         'IdeaNest-org',
         'localhost-cert',
-        'localhost.key',
+        'certs/localhost.key',
         'main',
-        fs.readFileSync('localhost.key', 'utf-8')
+        localhostKey
     );
 };

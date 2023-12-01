@@ -67,9 +67,19 @@ async function checkMacCert() {
 }
 
 async function checkWinCert() {
-    const certStore = require('cert-store');
-    const rootCrtPath = path.resolve(__dirname, '../certs/root.crt');
-    return await certStore.isInstalled(rootCrtPath);
+    const ca = require('win-ca');
+    rootCAs = [];
+    // Fetch all certificates in PEM format
+    ca({
+        format: ca.der2.pem,
+        ondata: (crt) => {
+            rootCAs.push(crt);
+        },
+    });
+    const rootCrt = await getRootCrt();
+    return rootCAs.some((item) => {
+        return item && replaceEnter(item) === replaceEnter(rootCrt);
+    });
 }
 
 async function checkLinuxCert() {

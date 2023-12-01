@@ -33,7 +33,7 @@ npm install localhost-cert --save-dev
 #### webpack-dev-server
 
 ```javascript
-const getHttps = require('localhost-cert');
+const getHttps = require('localhost-https');
 
 // webpack config
 module.exports = {
@@ -48,7 +48,7 @@ module.exports = {
 
 ```javascript
 // vite config
-const getHttps = require('localhost-cert');
+const getHttps = require('localhost-https');
 export default defineConfig({
     server: {
         https: getHttps({

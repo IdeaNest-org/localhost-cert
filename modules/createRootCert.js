@@ -15,7 +15,7 @@ module.exports = function createRootCert() {
     const attrs = [
         {
             name: 'commonName',
-            value: 'My Root CA',
+            value: 'Localhost Root Ca No.1',
         },
         {
             name: 'countryName',
@@ -31,11 +31,11 @@ module.exports = function createRootCert() {
         },
         {
             name: 'organizationName',
-            value: 'Test',
+            value: 'localhost-https',
         },
         {
             shortName: 'OU',
-            value: 'Test',
+            value: 'LH',
         },
     ];
     cert.setSubject(attrs);
@@ -73,7 +73,7 @@ module.exports = function createRootCert() {
     const serverAttrs = [
         {
             name: 'commonName',
-            value: 'localhost',
+            value: 'Localhost Root Ca No.1',
         },
         {
             name: 'countryName',
@@ -89,11 +89,11 @@ module.exports = function createRootCert() {
         },
         {
             name: 'organizationName',
-            value: 'Test',
+            value: 'localhost-https',
         },
         {
             shortName: 'OU',
-            value: 'Test',
+            value: 'LH',
         },
     ];
     serverCert.setSubject(serverAttrs);

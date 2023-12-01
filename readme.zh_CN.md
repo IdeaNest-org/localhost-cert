@@ -13,7 +13,7 @@
 ### 为什么是安全的？
 
 如果你对 HTTPS 有一定的了解，那么你应该知道如果在本地安装一个 CA 根证书，这是一个很危险的事，因为这个根证书可以用于签名任何域名比如，google.com. 从而达到中间人劫持，但是 Localhost Cert 生成 localhost 的域名后，立马丢弃了根证书的私钥，也就是说，即便有人想用这个根证书对其他网站签名是不可能的。
-那么是如何保证私钥没有被记住呢，Localhost cert 是利用 github action 生成根证书的，github Action 生成的过程以及 github 当时的代码是完全可追踪的，如果感兴趣可以查看[github action](https://github.com/IdeaNest-org/localhost-cert/actions/runs/7004987626/job/19053845251)
+那么是如何保证私钥没有被记住呢，Localhost cert 是利用 github action 生成根证书的，github Action 生成的过程以及 github 当时的代码是完全可追踪的，如果感兴趣可以查看[github action](https://github.com/IdeaNest-org/localhost-cert/actions/runs/7056302734)
 
 总结一下基于两点，它是完全安全的
 1、生成根证书的过程是基于 github action，是完全可追踪的

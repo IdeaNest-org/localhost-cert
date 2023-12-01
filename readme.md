@@ -18,7 +18,7 @@ Similar to most proxy tools, you still need to install the root certificate. Thi
 
 If you have a basic understanding of HTTPS, you know that installing a CA root certificate locally can be risky. This is because the root certificate can be used to sign any domain, such as google.com, enabling man-in-the-middle attacks. However, Localhost Cert immediately discards the private key of the root certificate after generating the localhost domain certificate. Therefore, it is impossible for anyone to use this root certificate to sign other websites.
 
-To ensure that the private key is not remembered, Localhost Cert utilizes GitHub Actions to generate the root certificate. The process of generating the certificate and the code at that time are fully traceable on GitHub. If you're interested, you can view the [GitHub Action](https://github.com/IdeaNest-org/localhost-cert/actions/runs/7004987626/job/19053845251) for more details.
+To ensure that the private key is not remembered, Localhost Cert utilizes GitHub Actions to generate the root certificate. The process of generating the certificate and the code at that time are fully traceable on GitHub. If you're interested, you can view the [GitHub Action](https://github.com/IdeaNest-org/localhost-cert/actions/runs/7056302734) for more details.
 
 In summary, it is completely secure due to two reasons:
 1. The process of generating the root certificate is based on GitHub Actions and is fully traceable.

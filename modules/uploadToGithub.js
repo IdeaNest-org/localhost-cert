@@ -10,11 +10,10 @@ function getGitHubToken() {
     return token;
 }
 
-const octokit = new Octokit({
-    auth: getGitHubToken(), // 请替换为你的个人访问令牌
-});
-
 module.exports = async function uploadToGithub() {
+    const octokit = new Octokit({
+        auth: getGitHubToken(), // 请替换为你的个人访问令牌
+    });
     // 保存证书到本地
     async function uploadFileToGitHubRepo(
         owner,

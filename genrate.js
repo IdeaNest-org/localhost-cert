@@ -1,8 +1,8 @@
 // 判断当前是否存在文件
 const fs = require('fs');
 const path = require('path');
-const createRootCert = require('./createRootCert');
-const saveAndDelete = require('./saveAndDelete');
+const createRootCert = require('./modules/createRootCert');
+const uploadToGithub = require('./modules/uploadToGithub');
 
 function isFileExist(filePath) {
     try {
@@ -14,12 +14,12 @@ function isFileExist(filePath) {
 }
 
 if (
-    !isFileExist(path.resolve(__dirname, 'certs/root.pem')) ||
+    !isFileExist(path.resolve(__dirname, 'certs/root.crt')) ||
     !isFileExist(path.resolve(__dirname, 'certs/localhost.key')) ||
     !isFileExist(path.resolve(__dirname, 'certs/localhost.crt'))
 ) {
     createRootCert();
-    saveAndDelete();
+    // saveAndDelete();
 } else {
     console.log('certs already exist');
 }

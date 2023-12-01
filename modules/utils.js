@@ -16,7 +16,7 @@ function readCert(name) {
     return readFileFromDir('certs/' + name);
 }
 function writeCert(name, content) {
-    return writeFileToDir('cents/' + name, content);
+    return writeFileToDir('certs/' + name, content);
 }
 module.exports = {
     readFileFromDir,

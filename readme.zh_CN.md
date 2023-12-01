@@ -33,10 +33,7 @@ const getHttps = require('localhost-https');
 // webpack config
 module.exports = {
     devServer: {
-        https: getHttps({
-            // 如果开发者没有安装根证书，那么会引导开发者安装根证书
-            autoInstall: true,
-        }),
+        https: getHttps(),
     },
 };
 ```

@@ -1,7 +1,5 @@
 const getHttps = require('./index.js');
-const options = getHttps({
-  autoInstall: true,
-});
+const options = getHttps();
 console.log(options);
 const https = require('https');
 https

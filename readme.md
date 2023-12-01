@@ -38,10 +38,7 @@ const getHttps = require('localhost-https');
 // webpack config
 module.exports = {
     devServer: {
-        https: getHttps({
-            // If the developer has not installed the root certificate, they will be guided to install it.
-            autoInstall: true,
-        }),
+        https: getHttps(),
     },
 };
 ```
@@ -51,10 +48,7 @@ module.exports = {
 const getHttps = require('localhost-https');
 export default defineConfig({
     server: {
-        https: getHttps({
-            // If the developer has not installed the root certificate, they will be guided to install it.
-            autoInstall: true,
-        }),
+        https: getHttps(),
     },
 });
 ```

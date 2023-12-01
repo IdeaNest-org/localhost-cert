@@ -1,14 +1,19 @@
 // 调用检测函数
-module.exports = getHttps = ({ autoInstall = true } = {}) => {
+const checkRootCertInstall = require('./modules/checkRootCertInstall');
+const installRootCert = require('./modules/installRootCert');
+const { readCert } = require('./modules/utils');
+const getHttpsConfig = ({ autoInstall = true } = {}) => {
     if (autoInstall) {
-        checkRootCertificateInstallation().then((res) => {
+        checkRootCertInstall().then((res) => {
+            console.log('is root install', res);
             if (!res) {
-                install();
+                installRootCert();
             }
         });
     }
     return {
-        cert: localhostCrt,
-        key: localhostKey,
+        cert: readCert('localhost.crt'),
+        key: readCert('localhost.key'),
     };
 };
+module.exports = getHttpsConfig;

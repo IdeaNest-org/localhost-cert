@@ -32,9 +32,9 @@ async function startTestServer() {
 module.exports = async function checkRootCertificateInstallation() {
     const rootCrt = await getRootCrt();
     const options = {
-        rejectUnauthorized: false, // 忽略证书错误
+        // rejectUnauthorized: false, // 忽略证书错误
         ca: [rootCrt], // 添加你要验证的根证书
-        checkServerIdentity: () => null, // 禁用服务器身份验证
+        // checkServerIdentity: () => null, // 禁用服务器身份验证
     };
     // https 启动localhost 服务
     const server = await startTestServer();

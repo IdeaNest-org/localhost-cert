@@ -20,19 +20,19 @@
     "homepage": "https://github.com/IdeaNest-org/localhost-cert#readme",
     "description": "A secure and convenient solution for enabling HTTPS on localhost",
     "keywords": [
-      "localhost",
-      "https",
-      "ssl",
-      "tls",
-      "certificate",
-      "localhost-certificate",
-      "localhost-https",
-      "localhost-ssl",
-      "localhost-cert",
-      "https-localhost",
-      "https-server",
-      "minica",
-      "mkcert"
+        "localhost",
+        "https",
+        "ssl",
+        "tls",
+        "certificate",
+        "localhost-certificate",
+        "localhost-https",
+        "localhost-ssl",
+        "localhost-cert",
+        "https-localhost",
+        "https-server",
+        "minica",
+        "mkcert"
     ],
     "npmIgnore": [
         "test.js",
@@ -42,7 +42,10 @@
         "saveAndDelete.js"
     ],
     "dependencies": {
+        "cert-store": "^1.1.0",
         "fs-extra": "^11.1.1",
+        "mac-ca": "^2.0.3",
+        "node-fetch": "^3.3.2",
         "sudo-prompt": "^9.2.1"
     },
     "devDependencies": {

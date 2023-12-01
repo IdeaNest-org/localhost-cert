@@ -19,11 +19,14 @@ module.exports = function install() {
                 if (error) throw error;
             });
         } else if (process.platform === 'darwin') {
-            cp.exec(
+            const proce = cp.exec(
                 'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain "' +
                     crtPath +
                     '"'
             );
+            proce.on('exit', function (code) {
+                console.log('child process exited with code ' + code);
+            });
         } else if (process.platform === 'linux') {
             cp.exec(
                 'sudo cp "' +

@@ -1,6 +1,6 @@
 {
-    "name": "localhost-cert",
-    "version": "1.0.10",
+    "name": "localhost-https",
+    "version": "1.0.7",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -28,7 +28,9 @@
         "localhost-certificate",
         "localhost-https",
         "localhost-ssl",
-        "localhost-cert"
+        "localhost-cert",
+        "https-localhost",
+        "https-server"
     ],
     "npmIgnore": [
         "test.js",

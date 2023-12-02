@@ -31,7 +31,7 @@ module.exports = function createRootCert() {
         },
         {
             name: 'organizationName',
-            value: 'localhost-https',
+            value: 'localhost-cert',
         },
         {
             shortName: 'OU',
@@ -89,7 +89,7 @@ module.exports = function createRootCert() {
         },
         {
             name: 'organizationName',
-            value: 'localhost-https',
+            value: 'localhost-cert',
         },
         {
             shortName: 'OU',

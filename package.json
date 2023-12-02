@@ -1,12 +1,12 @@
 {
-    "name": "localhost-https",
-    "version": "1.0.13",
+    "name": "localhost-cert",
+    "version": "1.0.14",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "bin": {
-        "cra-https": "bin/cra-https.js"
+        "cra-cert": "bin/cra-cert.js"
     },
     "repository": {
         "type": "git",
@@ -26,7 +26,7 @@
         "tls",
         "certificate",
         "localhost-certificate",
-        "localhost-https",
+        "localhost-cert",
         "localhost-ssl",
         "localhost-cert",
         "https-localhost",

@@ -27,7 +27,7 @@ In summary, it is completely secure due to two reasons:
 ### How to use?
 
 ```bash
-npm install localhost-https --save-dev
+npm install localhost-cert --save-dev
 ```
 
 #### webpack-dev-server

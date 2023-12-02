@@ -22,7 +22,7 @@
 ### 如何使用？
 
 ```bash
-npm install localhost-https --save-dev
+npm install localhost-cert --save-dev
 ```
 
 #### wevpack-dev-server
